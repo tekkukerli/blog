@@ -11,10 +11,10 @@
     <title><?= PROJECT_NAME ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/components/bootstrap/css/bootstrap.min.css?<?=COMMIT_HASH?>" rel="stylesheet">
+    <link href="vendor/components/bootstrap/css/bootstrap.css?<?=COMMIT_HASH?>" rel="stylesheet">
 
     <!-- jQuery UI core CSS -->
-    <link href="vendor/components/jqueryui/themes/base/jquery-ui.min.css?<?=COMMIT_HASH?>" rel="stylesheet">
+    <link href="vendor/components/jqueryui/themes/base/jquery-ui.css?<?=COMMIT_HASH?>" rel="stylesheet">
 
     <!-- Site core CSS -->
     <link href="assets/css/main.css?<?=COMMIT_HASH?>" rel="stylesheet">
@@ -27,7 +27,7 @@
 
 
     <!-- jQuery -->
-    <script src="vendor/components/jquery/jquery.min.js?<?=COMMIT_HASH?>"></script>
+    <script src="vendor/components/jquery/jquery.js?<?=COMMIT_HASH?>"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -55,18 +55,7 @@
             <ul class="nav navbar-nav">
                 <li <?= $controller == 'welcome' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
                 <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sample dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#"><? __('Action') ?></a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -102,8 +91,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="vendor/components/bootstrap/js/bootstrap.min.js?<?=COMMIT_HASH?>"></script>
-<script src="vendor/components/jqueryui/jquery-ui.min.js?<?=COMMIT_HASH?>"></script>
+<script src="vendor/components/bootstrap/js/bootstrap.js?<?=COMMIT_HASH?>"></script>
+<script src="vendor/components/jqueryui/jquery-ui.js?<?=COMMIT_HASH?>"></script>
 <script src="assets/js/main.js?<?=COMMIT_HASH?>"></script>
 </body>
 </html>
