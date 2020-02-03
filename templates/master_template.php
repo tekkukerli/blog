@@ -41,38 +41,28 @@
 <body>
 
 <!-- Fixed navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<!-- navbar with dropdown -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li <?= $controller == 'welcome' ? 'class="active"' : '' ?>><a href="#">Home</a></li>
-                <li <?= $controller == 'halo' ? 'class="active"' : '' ?>><a href="halo">Halo admin</a></li>
-
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?> <b
-                                class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <?php foreach ($supported_languages as $language): ?>
-                            <li><a href="<?= $controller ?>?language=<?= $language ?>"
-                                   class="<?= $language == $_SESSION['language'] ? 'active' : '' ?>"><?= $language ?></a>
-                            </li>
-                        <?php endforeach ?>
-                    </ul>
-                </li>
-                <li><a href="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
-                <li title="<?=__('Log out')?> <?= $auth->name ?>"><a href="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></a></li>
-        </div>
-        <!--/.nav-collapse -->
+        <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
+        <ul class="navbar-nav">
+            <li class="nav-item <?= $controller == 'posts' ? 'active' : '' ?>"><a class="nav-link" href="<?php echo BASE_URL;?>">Posts</a></li>
+            <li class="nav-item <?= $controller == 'tags' ? 'active' : '' ?>"><a class="nav-link" href="<?php echo BASE_URL;?>tags">Tags</a></li>
+            <li class="nav-item <?= $controller == 'users' ? 'active' : '' ?>"><a class="nav-link" href="<?php echo BASE_URL;?>users">Users</a></li>
+            <li class="nav-item <?= $controller == 'halo' ? 'active' : '' ?>"><a class="nav-link" href="halo">Halo admin</a></li>
+            <!-- dropdown list item start-->
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $_SESSION['language'] ?></a>
+                <div class="dropdown-menu">
+                    <?php foreach ($supported_languages as $language): ?>
+                        <a href="<?= $controller ?>?language=<?= $language ?>"
+                           class="<?= $language == $_SESSION['language'] ? 'active' : '' ?>"><?= $language ?></a>
+                    <?php endforeach ?>
+                </div>
+            </li>
+            <!-- dropdown list item end -->
+            <li title="<?=__('Log out')?> <?= $auth->name ?>" class="nav-item"><a class="nav-link" href="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true">Log Out</a></li>
+        </ul>
     </div>
 </nav>
 
