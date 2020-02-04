@@ -8,10 +8,9 @@
     </span>
             </div>
             <div>Tags:
-                <span class="badge badge-primary">alice
-    <span class="badge badge-primary">story</span>
-    <span class="badge badge-primary">blog</span>
-    <span class="badge badge-primary">personal</span></div>
+                <?php foreach($tags[$post['post_id']] as $tag):?>
+                    <span class="badge badge-primary"><?php echo $tag?></span>
+                <?php endforeach;?>
         </div>
     </div>
     <hr>

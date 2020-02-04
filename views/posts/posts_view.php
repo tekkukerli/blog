@@ -6,10 +6,9 @@
         <hr>
         <p>Posted on <?php echo $post['post_created']; ?></p>
         <p>Tags:
-            <span class="badge badge-primary">alice</span>
-            <span class="badge badge-primary">story</span>
-            <span class="badge badge-primary">blog</span>
-            <span class="badge badge-primary">personal</span>
+            <?php foreach($tags as $tag): ?>
+                <span class="badge badge-primary"><?php echo $tag['tag_name'];?></span>
+            <?php endforeach; ?>
         </p>
         <hr>
         <p><?php echo $post['post_text'];?></p>
