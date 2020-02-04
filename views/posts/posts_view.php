@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-lg-8">
         <h1><?php echo $post['post_subject'];?></h1>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Veebr 04, 2020 kell 12:10 PL
+-- Loomise aeg: Veebr 04, 2020 kell 06:45 PL
 -- Serveri versioon: 10.4.8-MariaDB
 -- PHP versioon: 7.3.11
 
@@ -16,14 +16,14 @@ SET time_zone = "+00:00";
 --
 -- Andmebaas: `blog`
 --
-CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `blog`;
 
 -- --------------------------------------------------------
---
+
 --
 -- Tabeli struktuur tabelile `post`
-
+--
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
@@ -34,31 +34,32 @@ CREATE TABLE IF NOT EXISTS `post` (
                                       `user_id` int(10) UNSIGNED NOT NULL,
                                       PRIMARY KEY (`post_id`),
                                       KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Andmete tõmmistamine tabelile `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
-(4, 'Test', 'See on minu testpostituse sisu.', '2020-02-04 10:47:27', 1),
-(5, 'Pealkiri', 'See on postituse sisu.', '2020-02-04 10:47:27', 1);
+(1, 'Esimene postitus', 'You ought to be ashamed of yourself for asking such a simple question,\' added the Gryphon; and then they both sat silent and looked at poor Alice, who felt ready to sink into the earth. At last the Gryphon said to the Mock Turtle, \'Drive on, old fellow! Don\'t be all day about it!\' and he went on in these words: \'Yes, we went to school in the sea, though you mayn\'t believe it—\' \'I never said I didn\'t!\' interrupted Alice.', '2020-02-04 10:47:27', 1),
+(2, 'Teine postitus', 'You ought to be ashamed of yourself for asking such a simple question,\' added the Gryphon; and then they both sat silent and looked at poor Alice, who felt ready to sink into the earth. At last the Gryphon said to the Mock Turtle, \'Drive on, old fellow! Don\'t be all day about it!\' and he went on in these words:\r\n    \'Yes, we went to school in the sea, though you mayn\'t believe it—\'\r\n    \'I never said I didn\'t!\' interrupted Alice.', '2020-02-04 15:19:22', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_tags`
+-- Tabeli struktuur tabelile `post_tags`
 --
 
 DROP TABLE IF EXISTS `post_tags`;
 CREATE TABLE IF NOT EXISTS `post_tags` (
                                            `post_id` int(11) UNSIGNED NOT NULL,
                                            `tag_id` int(11) UNSIGNED NOT NULL,
-                                           KEY `post_id` (`post_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+                                           PRIMARY KEY (`post_id`,`tag_id`),
+                                           KEY `tag_id` (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `post_tags`
+-- Andmete tõmmistamine tabelile `post_tags`
 --
 
 INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
@@ -71,18 +72,18 @@ INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag`
+-- Tabeli struktuur tabelile `tag`
 --
 
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
                                      `tag_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-                                     `tag_name` varchar(255) NOT NULL,
+                                     `tag_name` varchar(25) CHARACTER SET latin1 NOT NULL,
                                      PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tag`
+-- Andmete tõmmistamine tabelile `tag`
 --
 
 INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
@@ -94,7 +95,7 @@ INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `translations`
+-- Tabeli struktuur tabelile `translations`
 --
 
 DROP TABLE IF EXISTS `translations`;
@@ -107,10 +108,10 @@ CREATE TABLE IF NOT EXISTS `translations` (
                                               `action` varchar(20) NOT NULL,
                                               PRIMARY KEY (`translation_id`),
                                               UNIQUE KEY `language_phrase_controller_action_index` (`language`,`phrase`,`controller`,`action`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `translations`
+-- Andmete tõmmistamine tabelile `translations`
 --
 
 INSERT INTO `translations` (`translation_id`, `phrase`, `language`, `translation`, `controller`, `action`) VALUES
@@ -136,13 +137,12 @@ INSERT INTO `translations` (`translation_id`, `phrase`, `language`, `translation
 (20, 'Email', 'en', '{untranslated}', 'global', 'global'),
 (21, 'Password', 'en', '{untranslated}', 'global', 'global'),
 (22, 'Sign in', 'en', '{untranslated}', 'global', 'global'),
-(23, 'Wrong username or password', 'en', '{untranslated}', 'global', 'global'),
-(24, 'Oops...', 'en', '{untranslated}', 'global', 'global'),
-(25, 'Close', 'en', '{untranslated}', 'global', 'global'),
-(26, 'Server returned an error. Please try again later ', 'en', '{untranslated}', 'global', 'global'),
-(27, 'Oops...', 'et', '{untranslated}', 'global', 'global'),
-(28, 'Close', 'et', '{untranslated}', 'global', 'global'),
-(29, 'Server returned an error. Please try again later ', 'et', '{untranslated}', 'global', 'global');
+(23, 'Oops...', 'en', '{untranslated}', 'global', 'global'),
+(24, 'Close', 'en', '{untranslated}', 'global', 'global'),
+(25, 'Server returned an error. Please try again later ', 'en', '{untranslated}', 'global', 'global'),
+(26, 'Oops...', 'et', '{untranslated}', 'global', 'global'),
+(27, 'Close', 'et', '{untranslated}', 'global', 'global'),
+(28, 'Server returned an error. Please try again later ', 'et', '{untranslated}', 'global', 'global');
 
 -- --------------------------------------------------------
 
@@ -169,20 +169,20 @@ INSERT INTO `users` (`user_id`, `is_admin`, `password`, `email`, `deleted`, `nam
 (1, 1, '$2y$10$vTje.ndUFKHyuotY99iYkO.2aHJUgOsy2x0RMXP1UmrTe6CQsKbtm', 'demo@example.com', 0, 'Demo User');
 
 --
--- Indeksid tõmmistatud tabelitele
+-- Tõmmistatud tabelite piirangud
 --
 
 --
--- Indeksid tabelile `post`
+-- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
     ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `post_tags`
+-- Piirangud tabelile `post_tags`
 --
 ALTER TABLE `post_tags`
-    ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `tag` (`tag_id`);
+    ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+    ADD CONSTRAINT `post_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
-
